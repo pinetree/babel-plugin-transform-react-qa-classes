@@ -34,7 +34,7 @@ function functionBodyPushAttributes(t, path, options, componentName) {
   if (!openingElement) return
   if (isReactFragment(openingElement)) return
 
-  openingElement.node.attributes.push(
+  openingElement.node.attributes.unshift(
     t.jSXAttribute(
       t.jSXIdentifier(options.attribute),
       t.stringLiteral(options.format(componentName))
@@ -86,7 +86,7 @@ export default function({ types: t }) {
             const openingElement = arg.get('openingElement')
             if (isReactFragment(openingElement)) return
 
-            openingElement.node.attributes.push(
+            openingElement.node.attributes.unshift(
               t.jSXAttribute(
                 t.jSXIdentifier(options.attribute),
                 t.stringLiteral(options.format(name.node && name.node.name))
